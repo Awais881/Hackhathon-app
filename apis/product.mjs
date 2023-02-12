@@ -36,7 +36,12 @@ router.post('/product', uploadMiddleware.any(), (req, res) => {
         const token = jwt.decode(req.cookies.Token)
 
         if ( // validation
-            !body.text
+            !body.item,
+            !body.price ,
+             !body.unit, 
+              !body.description
+
+
         ) {
             res.status(400).send({
                 message: "required parameters missing",

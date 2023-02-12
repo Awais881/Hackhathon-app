@@ -4,6 +4,11 @@ from 'mdb-react-ui-kit';
 import HomeIcon from '@mui/icons-material/Home';
 import AddIcon from '@mui/icons-material/Add';
 import PersonIcon from '@mui/icons-material/Person';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import Box from '@mui/material/Box'
+
+
+
 import { useState, useContext } from "react";
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,6 +24,7 @@ function AdminItem() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");  
   const [unit, setUnit] = useState("");
+  const [image, setImage] = useState(null)
   const [toggleReload, setToggleReload] = useState("");
 
   const addProducts = async (e) => {
@@ -27,7 +33,7 @@ function AdminItem() {
     console.log("fileInput: ", fileInput.files[0]);
     let formData = new FormData();
   formData.append("myFile", fileInput.files[0])
-  formData.append("text", item)
+  formData.append("item", item)
   formData.append("unit", unit)
   formData.append("price", price)
   formData.append("description", description)
@@ -91,8 +97,30 @@ function AdminItem() {
                
             <div>
             <form onSubmit={addProducts}>
-
-            <input type="file" name="" id="" />
+            <label htmlFor="myFile">
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                pl: 1,
+                pr: 1,
+                marginTop: 2,
+                width: { lg: "190px", sm: "150px", xs: "250px" },
+                backgroundColor: "gray",
+                borderRadius: "15px",
+              }}
+            >
+              <CameraAltIcon sx={{ fontSize: "4em", m: 4 }} />
+              <input
+                type="file"
+                style={{
+                  display: "none",
+                }}
+                id="myFile"
+                onChange={(e)=>setImage(e.target.files[0])}
+              />
+            </Box>
+            </label>
         <br /> <br />
      <input type="text" name="" id=""   className='item' placeholder='Item Name'
      onChange={(e) => { setItem(e.target.value) }}
@@ -111,7 +139,7 @@ function AdminItem() {
      onChange={(e) => { setPrice(e.target.value) }}/>
 
 
-     <MDBBtn outline  color='white' className='mx-2 px-5' type='submit '
+     <MDBBtn outline  color='white' className='mx-2 px-5' type='submit'
                size='lg'   style={{ color: 'white', background:'#61B846' , 
                width:'226px' ,  borderRadius:'15px', fontSize:'15px' , 
              lineHeight:'25px', fontWeight:'600'}}
