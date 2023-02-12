@@ -10,7 +10,7 @@ let data = {
   isAdmin: false,
   baseUrl:  window.location.href.split(":")[0] === "http"
   ? "http://localhost:5001/api/v1"
-  : "/api/v1"
+  : "https://hackhathon-app-production.up.railway.app/api/v1"
 
  
  
