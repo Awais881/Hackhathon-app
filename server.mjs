@@ -6,7 +6,7 @@ const app = express()
 import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
 import AuthApis from './apis/auth.mjs'
-// import TweetApis from './apis/tweet.mjs'
+import ProductApis from './apis/product.mjs'
 // import Chats from './apis/chat.mjs'
 
 
@@ -81,7 +81,7 @@ app.use("/api/v1",(req, res ,next ) =>{
 });
 
 
-// app.use('/api/v1', TweetApis)
+app.use('/api/v1', ProductApis)
 // app.use('/api/v1', Chats)
 
 const getUser = async (req, res) => {
@@ -94,7 +94,7 @@ const getUser = async (req, res) => {
   }
 
   try {
-      const user = await userModel.findOne({ _id: _id }, "email firstName lastName -_id").exec()
+      const user = await userModel.findOne({ _id: _id }, "  email firstName lastName -_id ").exec()
       if (!user) {
           res.status(404).send({})
           return;

@@ -35,7 +35,7 @@ function GetStarted() {
               <MDBBtn outline  color='white' className='mx-2 px-5' 
                size='lg'  style={{ color: '#61B846' , background:'#61B846'}}  >
                   <Link to={`/login`} style={{ color: 'white', background:'#61B846' , 
-                  width:'226px' , boxShadow:'0px 4px 4px 5px #D4D3D3;', borderRadius:'15px', fontSize:'15px' , 
+                  width:'226px' , borderRadius:'15px', fontSize:'15px' , 
                 lineHeight:'25px', fontWeight:'600'
                 }}> Get Started</Link>
               </MDBBtn>

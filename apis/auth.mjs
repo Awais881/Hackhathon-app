@@ -1,5 +1,5 @@
 import express from 'express';
-import { userModel, tweetModel, otpModel } from './../dbRepo/model.mjs';
+import { userModel, otpModel } from './../dbRepo/model.mjs';
 import {
     stringToHash,
     varifyHash,
@@ -67,6 +67,7 @@ router.post("/api/v1/signup", (req ,res) =>{
                lastName: body.lastName,
                email: body.email,
                password: hashString
+            
            },
            (err, result) =>{
              
@@ -117,7 +118,7 @@ router.post("/api/v1/login", (req, res) =>{
       // check if user exist
    
       userModel.findOne({email: body.email},
-       "firstName lastName email password ",
+       "firstName lastName email password isAdmin",
        (err, data) =>{
            if(!err){
                console.log("data: ", data);

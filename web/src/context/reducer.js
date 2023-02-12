@@ -7,6 +7,9 @@ export const reducer = (state, action) => {
       case "USER_LOGOUT": {
         return { ...state, isLogin: false } // set this to null on purpose, do not change
       }
+      case "IS_ADMIN": {
+        return { ...state, isAdmin: true } // set this to null on purpose, do not change
+      }
   
       
       case "TOGGLE_THEME": {

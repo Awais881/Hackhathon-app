@@ -1,8 +1,11 @@
 import mongoose from 'mongoose';
 
 
-let tweetSchema = new mongoose.Schema({
-    text: { type: String, required: true },
+let productSchema = new mongoose.Schema({
+    item: { type: String, required: true },
+    description: { type: String, required: true },
+    unit: { type: String, required: true },
+    price: { type: String, required: true },
     owner: { type: mongoose.ObjectId, ref: "Users", required: true },
     
     // ownerName: String,
@@ -10,16 +13,17 @@ let tweetSchema = new mongoose.Schema({
 
     imageUrl: { type: String },
    
-    isDeleted: { type: Boolean, default: false },
+   
     createdOn: { type: Date, default: Date.now }
 });
- export const tweetModel = mongoose.model('tweets', tweetSchema);
+ export const productModel = mongoose.model('products', productSchema);
  
 
   
 let userSchema= new mongoose.Schema({
     firstName : { type: String },
     lastName :{ type: String },
+    isAdmin: {type: Boolean, default: false},
     email : { type: String, required: true }, 
     password :  { type: String, required: true },
 })

@@ -10,7 +10,7 @@ import { GlobalContext } from '../context/context';
 
 
 import './login.css';
-function Signup() {
+function UserHome() {
 
 
     let { state, dispatch } = useContext(GlobalContext);
@@ -138,4 +138,4 @@ function Signup() {
 </MDBContainer>
  );
 }
-export default Signup;
+export default UserHome;

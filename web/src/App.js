@@ -8,7 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from "./assets/loader.gif"
 import axios from 'axios'
-import Home from './components/home';
+// import Home from './components/home';
+import AdminHome from './components/admin-home';
+import AddItem from './components/addItems';
+import AdminAccount from './components/admin-account';
+import UserHome from './components/user-home';
+
 import GetStarted from './components/getStarted';
 
 import ChangePassword from './components/changePassword'
@@ -49,7 +54,7 @@ function App() {
         console.log("response: ", response);
 
         dispatch({
-          type: 'USER_LOGIN',
+         type: 'USER_LOGIN',
           payload: response.data
         })
       } catch (error) {
@@ -57,6 +62,7 @@ function App() {
         console.log("axios error: ", error);
 
         dispatch({
+         
           type: 'USER_LOGOUT'
         })
       }
@@ -98,38 +104,16 @@ function App() {
 
   return (
     <>
-  
-  {
-        (state.isLogin === true) ?
-          <ul className='navBar'>
-            <li> <Link to={`/`}> </Link> </li>
-            <li> <Link to={`/profile`}> </Link> </li>
-           
-            {/* <li> <Button size="medium"  variant="contained"  onClick={logoutHandler}>Logout</Button> </li>  */}
-            
-          </ul>
-          : null
-      }
-      {
-        (state.isLogin === false) ?
-          <ul className='navBar'>
-            <li> <Link to={"/"}> </Link> </li>
-            <li> <Link to={"/login"}></Link> </li>
-            <li> <Link to={"/signup"}></Link> </li>
-
+     
+     {(state.isLogin === true && state.user.isAdmin === false) ?
          
-          </ul> : null
-      }
-
-      {(state.isLogin === true) ?
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          
-        <Route path='change-password' element={<ChangePassword />} />
-         <Route path="*" element={<Navigate to="/" replace={true} />} />
-        </Routes>
-        : null}
+         <Routes>
+         <Route path="/" element={<UserHome />} />
+      
+        <Route path="*" element={<Navigate to="/" replace={true} />} />
+       </Routes>
+            : null
+          }
 
       {(state.isLogin === false) ?
         <Routes>
@@ -141,6 +125,39 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace={true} />} />
         </Routes> : null
       }
+          
+            {(state.isLogin === true) ?
+         
+         <Routes>
+         <Route path="/" element={<AdminHome />} />
+         <Route path='add-item' element={<AddItem />} />
+         <Route path='admin-account' element={<AdminAccount />} />
+       
+        <Route path="*" element={<Navigate to="/" replace={true} />} />
+       </Routes>
+         : null
+       }
+        
+  
+
+      {/* {(state.isLogin === true) ?
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          
+        <Route path='change-password' element={<ChangePassword />} />
+         <Route path="*" element={<Navigate to="/" replace={true} />} />
+        </Routes>
+        : null}
+
+      {(state.isLogin === false) ?
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="forget-password" element={<ForgetPassword />} />
+          <Route path="*" element={<Navigate to="/" replace={true} />} />
+        </Routes> : null
+      } */}
 
       {(state.isLogin === null) ?
 
